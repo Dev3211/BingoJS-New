@@ -24,8 +24,7 @@ class RunLogin {
 
                 if (dataType == '<') {
                     new(require('./handlers/handleLogin'))().handleXml(data, clientObj);
-                }
-                if (dataType == '%') {
+                }else if (dataType == '%') {
                     new(require('./handlers/handleGame'))().handleraw(data, client);
                 }
             });
