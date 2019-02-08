@@ -104,7 +104,7 @@ class Login {
                 client.write('%xt%e%-1%' + INCORRECT_PASSWORD + '%');
             }
 
-            if (await client.socket.localPort == 6112) {
+            if (client.socket.localPort == 6112) {
                 if (encrypt === pass) {
                     let serverList = await this.getServerList(),
                         budonline = await this.handleBuddyOnline(result[0].ID),
