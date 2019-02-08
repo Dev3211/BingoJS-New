@@ -43,3 +43,30 @@ Player-string injection has also been patched
 Undefined bots are patched
 
 Database queries are safe from the use of MySQL injection.
+
+                                                                             
+                                                                             
+
+# How to use?
+
+Note: Make sure you install NodeJS(the LTE version)
+
+
+1. Create a new database.
+
+2. Download the files and create a new folder and add the emulator files.
+
+3. Upload the SQL to your database.
+
+4. Configure your server and database details located in the config.json
+
+5. Execute "npm install" in the directory to install all the modules.
+
+6. Start the files "rungame.js" and "runlogin.js" using the commands: "node rungame" and "node runlogin"
+
+7. If you have done everything correctly, the server should start working.
+
+Contributions are accepted, if you have any issues hit me up at Discord: Dev#9064
+
+Default pass: 123123
+                                                                             
