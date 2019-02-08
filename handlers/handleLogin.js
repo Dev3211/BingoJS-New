@@ -30,7 +30,7 @@ class Login {
     }
 
     async policy(client) {
-        await client.write('<cross-domain-policy><allow-access-from domain="*" to-ports="*" /></cross-domain-policy>');
+        client.write('<cross-domain-policy><allow-access-from domain="*" to-ports="*" /></cross-domain-policy>');
     }
 
     async handleXml(data, client) {
