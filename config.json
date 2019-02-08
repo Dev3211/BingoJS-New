@@ -1,0 +1,30 @@
+{
+    "db": {
+        "host"     : "localhost",
+        "user"     : "root",
+        "password" : "",
+        "database" : "bingo"
+    },
+	
+	"Servers": {
+	"ID": 101,
+	"Name": "Blizzard",
+	"Host": "localhost",
+	"Port": 6113,
+	"maxUsers": 1000
+	},
+	
+    "Ports": {
+    "Login": 6112,
+    "Game": 6113
+	},
+	
+	"plugins": [
+	{
+	"enabled": true, "directory": "../plugins/bot.js", "name": "bot"
+	},
+	{
+	"enabled": true, "directory": "../plugins/commands.js", "name": "commands"
+	}
+    ]
+}
