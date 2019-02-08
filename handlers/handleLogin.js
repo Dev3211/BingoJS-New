@@ -123,9 +123,7 @@ class Login {
                             client.socket.destroy();
                             return
                         }
-                    }
-
-                    if (clientonline) {
+                    }else if (clientonline) {
                         client.write('%xt%e%-1%' + MULTIPLE_CONNECTIONS + '%'),
                         client.socket.end(),
                         client.socket.destroy();
