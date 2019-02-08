@@ -33,6 +33,7 @@ Ban, kick and mute(Can only be used when a specific user is a moderator and a sy
 Rank System(Changes the badge on your player-card, goes from 1-6): Functional
                                                                              
                                                                              
+                                                                             
 Security stuff
 
 Preventing multiple users from trying to login in the same account(If a user is already logged in the same account, it won't allow any other user to login)
