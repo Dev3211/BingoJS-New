@@ -51,7 +51,7 @@ class Login {
     }
 
     async handleVerChk(data, client, xml) {
-        await client.write('<msg t="sys"><body action="apiOK" r="0"></body></msg>');
+        client.write('<msg t="sys"><body action="apiOK" r="0"></body></msg>');
     }
 
     async handleBuddyOnline(ID) {
