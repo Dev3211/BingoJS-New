@@ -68,5 +68,6 @@ Note: Make sure you install NodeJS(the LTE version)
 
 Contributions are accepted, if you have any issues hit me up at Discord: Dev#9064
 
+Default username: Devv
 Default pass: 123123
                                                                              
