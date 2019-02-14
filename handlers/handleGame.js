@@ -36,6 +36,13 @@ class Game {
     constructor() {
         this.clients = [],
             this.openigloos = [],
+            this.throttle = {
+                'i#ai': 3000,
+                'j#jr': 3000,
+                'j#jp': 3000,
+                'zo': 3000,
+                'g#af': 3000
+            },
             this.xtHandlers = {
                 's': {
                     'j#js': 'handleJoinServer',
@@ -123,8 +130,8 @@ class Game {
         }
         return false;
     }
-	
-	getusername(name) {
+
+    getusername(name) {
         for (var i in this.clients) {
             if (this.clients[i].get('user').toLowerCase() == name.toLowerCase()) {
                 return this.clients[i];
@@ -275,6 +282,27 @@ class Game {
         }
     }
 
+    async throttlez(data, client) {
+        if (this.throttle[data[2]]) {
+            let now = Date.now(),
+                obj = client.get('throttle');
+
+            obj.push(now)
+
+            if (obj.length > 5) {
+                let old = obj.shift();
+                if (now - old <= this.throttle[data[2]]) {
+                    obj = []
+                    console.log(`Packet spam detected by user ${client.user}, removing the client from the server! \r\n`)
+                    client.writeError(KICK)
+                    this.removeClient(client)
+                }
+
+            }
+
+        }
+    }
+
     async handleraw(data, client) {
         var dataArr = data.split('%');
         dataArr.shift();
@@ -284,9 +312,11 @@ class Game {
 
 
         var method = this.xtHandlers[type][handler];
-
         if (typeof this[method] == 'function') {
             this[method](dataArr, client);
+            if (handler in this.throttle) {
+                this.throttlez(dataArr, client)
+            }
         } else {
             console.log('Unhandled packet received: ' + handler);
         }
@@ -484,6 +514,7 @@ class Game {
 
     async handleAddItem(data, client) {
         var item = parseInt(data[4]);
+
         if (itemCrumbs.find(o => o.paper_item_id == item)) {
             console.log('Adding item: ' + item);
             var cost = itemCrumbs.find(o => o.paper_item_id == item).cost
@@ -566,7 +597,7 @@ class Game {
         if (!isNaN(score)) {
             if (nodivide.includes(gameroom)) {
                 let add = await client.addCoins(score)
-                if(add) client.sendXt('zo', -1, client.coins, 0, 0, 0, 0);
+                if (add) client.sendXt('zo', -1, client.coins, 0, 0, 0, 0);
             } else if (score > 0 && score < 9999) {
                 let round = Math.floor(score / 10)
                 let add = await client.addCoins(round)
@@ -608,7 +639,7 @@ class Game {
 
         if (furniture.length < 1) {
             await connection.query("UPDATE `furnitures` set `FurnitureID` = ? WHERE `PlayerID` = ?", ["[]", this.ID])
-        }else if (furniture.length > 99) {
+        } else if (furniture.length > 99) {
             client.write('%xt%e%-1%' + MAX_IGLOO_FURNITURE + '%');
         }
 
