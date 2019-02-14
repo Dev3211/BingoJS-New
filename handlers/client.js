@@ -68,6 +68,7 @@ var client = function(socket, connection) {
         self.flag = data.flag;
         self.photo = data.photo;
         self.requests = [];
+	self.throttle = [];
     }
 
     client.prototype.buildPlayerString = function() {
