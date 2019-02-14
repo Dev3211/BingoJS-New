@@ -44,6 +44,8 @@ Undefined bots are patched
 
 Database queries are safe from the use of MySQL injection.
 
+Throttle system(It is mainly used to prevent packet spam like mass adding items, coins, etc..)
+
                                                                              
                                                                              
 
